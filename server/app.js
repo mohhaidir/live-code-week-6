@@ -8,7 +8,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-const router = require('./routers')
+const router = require('./routers/index')
 
 app.use(router)
 
