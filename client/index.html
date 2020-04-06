@@ -95,7 +95,7 @@
   <div id="main-page">
     <div class="container my-3">
       <nav class="navbar navbar-light bg-light">
-        <button class="btn btn-primary ml-auto">
+        <button id="btn-logout" class="btn btn-primary ml-auto">
           Logout
         </button>
       </nav>
@@ -270,8 +270,14 @@
     }
 
     function start() {
-      $('#login-page').hide()
       $('#main-page').show()
+      $('#login-page').hide()
+      $('#btn-logout').on('click', () => {
+        localStorage.removeItem('token')
+        $('#submit-login')[0].reset()
+        $('#login-page').show()
+        $('#main-page').hide()
+      })
     }
 
     function login(email, password) {
@@ -283,7 +289,7 @@
           password: password
         },
         success: (data) => {
-          console.log(data)
+          // console.log(data)
           localStorage.setItem('token', data.access_token)
           start()
         }
